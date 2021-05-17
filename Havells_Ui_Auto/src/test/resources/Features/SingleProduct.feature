@@ -20,6 +20,7 @@ And User signin with OTP
 And User Enter the Details
 And User enter the payment details
 Then able to buy the product
+And Browser close
 
 Scenario: User is buying the product by selecting Subcategory
 Given User is on home page
@@ -30,6 +31,7 @@ And User signin with OTP
 And User Enter the Details
 And User enter the payment details
 Then able to buy the product
+And Browser close
 
 Scenario: Already login user buying the product
 Given User is on the My account
@@ -40,3 +42,4 @@ And Product is getting add to cart
 And User Enter the Details
 And User enter the payment details
 Then able to buy the product
+And Browser close
