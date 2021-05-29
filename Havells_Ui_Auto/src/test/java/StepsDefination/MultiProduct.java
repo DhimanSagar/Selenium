@@ -46,7 +46,7 @@ public class MultiProduct extends AbstractPageStepDefination {
 	 @And("click on Home link")
 		public void click_on_Home_link() throws InterruptedException
 	 {
-		 driver.findElement(By.xpath("//a[contains(@title,\"Go to Home Page\")]")).click();
+		 	driver.findElement(By.xpath("//a[contains(@title,\"Go to Home Page\")]")).click();
 	 }
 	 @And("Select the Another product")
 		public void Select_the_Another_product() throws InterruptedException
@@ -62,11 +62,11 @@ public class MultiProduct extends AbstractPageStepDefination {
 			driver.findElement(By.cssSelector("#zipcode")).sendKeys(excel.getData(0,2,1));
 		    driver.findElement(By.cssSelector("#addtocart_pincode > .btn")).click();
 		    Thread.sleep(3000);
-		    
 		    Alert alert = driver.switchTo().alert(); 
 		     String alertMessage= alert.getText(); 
 		     alert.accept();
 		     System.out.println("Alert msg is : "+alertMessage);
+		    	
 	 } 
 
 }

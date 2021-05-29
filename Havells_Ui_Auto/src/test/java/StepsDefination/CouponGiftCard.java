@@ -33,9 +33,7 @@ public class CouponGiftCard extends AbstractPageStepDefination {
 			 driver.findElement(By.xpath("//input[contains(@id,'giftcard_code')]")).sendKeys(excel.getData(0,5,1));
 		     driver.findElement(By.xpath("//body/section[2]/div[1]/div[2]/div[2]/div[2]/form[1]/button[1]")).click();
 		     System.out.println("GiftCard is added:- "+ excel.getData(0,5,1));
-		     System.out.println(driver.findElement(By.className("saving_info")).getText());
 		     }
-		
 		
 		@And("Browser close")
 		public void Browser_close() throws InterruptedException

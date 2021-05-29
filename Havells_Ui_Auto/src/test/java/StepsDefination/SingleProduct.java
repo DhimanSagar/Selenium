@@ -1,7 +1,6 @@
 package StepsDefination;
 
-import java.io.IOException;
-import java.util.List;
+import java.io.IOException; 
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -12,10 +11,16 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+
 import Lib.ExeclDataConfig;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.api.Scenario;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 
 public class SingleProduct extends AbstractPageStepDefination {
@@ -28,6 +33,7 @@ public class SingleProduct extends AbstractPageStepDefination {
      	System.setProperty("webdriver.chrome.driver","C:/Users/admin/Desktop/Automation/Havells-UI-Auto/Havells_Ui_Auto/src/test/resources/Driver/chromedriver.exe");
      	
 		}
+		
 		@Given("User is on home page")
 		public void user_is_on_home_page() throws IOException 
 			{
@@ -36,8 +42,9 @@ public class SingleProduct extends AbstractPageStepDefination {
 				driver.get("https://shoppoc.havells.com");
 				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 				driver.manage().timeouts().pageLoadTimeout(40,TimeUnit.SECONDS);
-				System.out.println("outside Browser is open");
 				driver.manage().window().maximize();
+				//List<WebElement> totalFrames = driver.findElements(By.xpath("//body/div[6]/section[1]/div[1]/div[1]/div[1]"));
+				//System.out.println("Total frame:-" + totalFrames.size());
 			}
 
 		@When("click on the product from image")
@@ -72,6 +79,7 @@ public class SingleProduct extends AbstractPageStepDefination {
 		     String alertMessage= alert.getText(); 
 		     alert.accept();
 		     System.out.println("Alert msg is : "+alertMessage);
+		     driver.navigate().refresh();
 		     
 				}
 			@And("Product is getting add to cart")
@@ -79,14 +87,20 @@ public class SingleProduct extends AbstractPageStepDefination {
 			{
 //				 driver.navigate().refresh();
 //				 driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+				 Thread.sleep(3000);
 			     driver.findElement(By.xpath("//img[contains(@src,'cart.jpg')]")).click();
 			     //
 			}
-
+			@And("User Click checkout")
+			public void User_Click_checkout() throws InterruptedException
+			{
+			driver.findElement(By.cssSelector(".proceede_btn > .btn")).click();	
+			}
+			
 			@And("User signin with OTP")
 			public void User_signin_with_OTP() throws InterruptedException
 			{
-					driver.findElement(By.cssSelector(".proceede_btn > .btn")).click();
+					
 					driver.findElement(By.cssSelector("#mobile")).sendKeys(excel.getData(0,13,1));
 					driver.findElement(By.cssSelector("#get_otp")).click();
 					Thread.sleep(25000);
@@ -156,26 +170,24 @@ public class SingleProduct extends AbstractPageStepDefination {
 			
 		@When("click on the Subcategory of product")
 		public void click_on_the_Subcategory_of_product() throws InterruptedException {
-		 WebElement btnmenu = driver.findElement(By.xpath("/html[1]/body[1]/header[1]/div[4]/nav[1]/ul[1]/li[3]/a[1]"));
-		 Actions action = new Actions(driver);
-		    String btnbordercolor = btnmenu.getCssValue("border-button");
-		    System.out.println("Before mouse hover"+btnbordercolor);
+			WebElement btnmenu = driver.findElement(By.xpath(" //a[contains(text(),'Switches')]"));
+			Actions action = new Actions(driver);
 		    action.moveToElement(btnmenu).perform();
-		    String btnbordercolorAfter = btnmenu.getCssValue("border-button");
-		    System.out.println("Before mouse hover"+btnbordercolorAfter);
+		    Thread.sleep(3000);
+		    WebElement btnCat = driver.findElement(By.xpath("//a[contains(text(),'Accessories')]"));
+		    btnCat.click();
+		    driver.findElement(By.xpath("//img[contains(@src,'0_287_3_7594.jpg')]")).click(); 
+		    driver.findElement(By.xpath("//body/section[2]/div[2]/div[1]/div[2]/form[1]/div[1]/div[1]/button[1]")).click();
+			driver.findElement(By.cssSelector("#zipcode")).clear();
+			driver.findElement(By.cssSelector("#zipcode")).sendKeys(excel.getData(0,2,1));
+		    driver.findElement(By.cssSelector("#addtocart_pincode > .btn")).click();
 		    Thread.sleep(3000);
 		    
-		 WebElement btmCat = driver.findElement(By.xpath("//a[contains(text(),'Table Fans')]"));
-		 List<WebElement> anchorTags = btmCat.findElements(By.tagName("a"));
-		 System.out.println("Number of elements in the Subcategory:="+anchorTags.size());
-		 
-		 for(WebElement menu: anchorTags) {
-			 if(menu.getText().equals("Table Fans")) {
-				 menu.click();
-				 break;
-			 }
-		 }}
-		 
+		    Alert alert = driver.switchTo().alert(); 
+		     String alertMessage= alert.getText(); 
+		     alert.accept();
+		     System.out.println("Alert msg is : "+alertMessage);
+			}
 
 			@When("Select the product from dropdown")
 			public void select_the_product_from_dropdown() throws InterruptedException
@@ -184,7 +196,17 @@ public class SingleProduct extends AbstractPageStepDefination {
 				Thread.sleep(3000);
 				driver.findElement(By.xpath("//input[@id='search']")).sendKeys(Keys.ARROW_DOWN);
 				driver.findElement(By.xpath("//input[@id='search']")).sendKeys(Keys.ENTER);
-  
+				driver.findElement(By.xpath("//img[contains(@alt,\"Aureus\")]")).click();
+				driver.findElement(By.xpath("//body/section[2]/div[2]/div[1]/div[2]/form[1]/div[1]/div[1]/button[1]")).click();
+				driver.findElement(By.cssSelector("#zipcode")).clear();
+				driver.findElement(By.cssSelector("#zipcode")).sendKeys(excel.getData(0,2,1));
+			    driver.findElement(By.cssSelector("#addtocart_pincode > .btn")).click();
+			    Thread.sleep(2000);
+			    Alert alert = driver.switchTo().alert(); 
+			     String alertMessage= alert.getText(); 
+			     alert.accept();
+			     System.out.println("Alert msg is : "+alertMessage);
+			  
 			}
 
 			@Given("User is on the My account")
@@ -201,18 +223,8 @@ public class SingleProduct extends AbstractPageStepDefination {
 				Actions action = new Actions(driver);
 				action.moveToElement(account).perform();
 				WebElement Myacc = driver.findElement(By.xpath("//a[contains(text(),'Account')]"));
-				List<WebElement> anchorTags = Myacc.findElements(By.tagName("a"));
-				System.out.println("Number of elements in the Subcategory:="+anchorTags.size());
-	
-				for(WebElement User: anchorTags)
-					{
-						 if(User.getText().equals("My Account"))
-						 {
-							 User.click();
-							 break;
-						 }}
-				}
-			
+				Myacc.click();
+			}
 			
 			@And("Click on product name")
 			public void Click_on_product_name () 
