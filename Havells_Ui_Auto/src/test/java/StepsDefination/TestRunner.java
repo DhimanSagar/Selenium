@@ -12,8 +12,10 @@ import cucumber.api.junit.Cucumber;
 		plugin = {
 				"pretty", "html:target/HtmlReports",
 				"json:target/JSONReports/report.json",
-				"junit:target/JUNITReports/report.xml"
+				"junit:target/JUNITReports/report.xml",
+				//"de.monochromata.cucumber.report.PrettyReports:target/MavenCucumberReport"
 				}
 		)
 		public class TestRunner {
-		}
+				}
+		

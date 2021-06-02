@@ -20,8 +20,9 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
+
+import Lib.Constants;
 
 public class SingleProduct extends AbstractPageStepDefination {
 	WebDriver driver;
@@ -50,29 +51,29 @@ public class SingleProduct extends AbstractPageStepDefination {
 		@When("click on the product from image")
 		public void click_on_the_product_from_image() throws InterruptedException
 			{
-				driver.findElement(By.cssSelector("[data-slick-index=\"2\"] > .category_thumb")).click();
-				driver.findElement(By.xpath("//a[contains(text(),' Split Air Conditioner 1.5 (GLS18I52WBEL)')]")).click();
+				driver.findElement(Constants.ITEM_TITLE).click();
+				driver.findElement(Constants.LLOYD_PORDUCT).click();
 				Thread.sleep(3000);
 		    }
 
 		@And("redirect to products details page")
 		public void redirect_to_product_details_page() throws InterruptedException
 			{
-			 driver.findElement(By.xpath("//input[contains(@id,'zipcode')]")).sendKeys(excel.getData(0,6,1));
-			 driver.findElement(By.xpath("//button[contains(text(),'Check')]")).click();
+			 driver.findElement(Constants.ZIPCODE).sendKeys(excel.getData(0,6,1));
+			 driver.findElement(Constants.CHECK_PINCODE).click();
 			 Thread.sleep(2000);
-		     driver.findElement(By.xpath("//input[contains(@id,'zipcode')]")).clear();
+		     driver.findElement(Constants.ZIPCODE).clear();
 		     Thread.sleep(3000);
-		     driver.findElement(By.xpath("//input[contains(@id,'zipcode')]")).sendKeys(excel.getData(0,2,1));
+		     driver.findElement(Constants.ZIPCODE).sendKeys(excel.getData(0,2,1));
 		     Thread.sleep(2000);
-		     driver.findElement(By.xpath("//button[contains(text(),'Check')]")).click();
+		     driver.findElement(Constants.CHECK_PINCODE).click();
 		     driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		     
 		     Thread.sleep(3000);
-		     driver.findElement(By.xpath("//body/section[2]/div[2]/div[1]/div[2]/form[1]/div[1]/div[1]/button[1]")).click();
-		     driver.findElement(By.cssSelector("#zipcode")).clear();
-		     driver.findElement(By.cssSelector("#zipcode")).sendKeys(excel.getData(0,2,1));
-		     driver.findElement(By.cssSelector("#addtocart_pincode > .btn")).click();
+		     driver.findElement(Constants.ADDToCART).click();
+		     driver.findElement(Constants.POPUP_ZIPCODE).clear();
+		     driver.findElement(Constants.POPUP_ZIPCODE).sendKeys(excel.getData(0,2,1));
+		     driver.findElement(Constants.ATC_POPUP).click();
 		     Thread.sleep(3000);
 		     
 		     Alert alert = driver.switchTo().alert(); 
@@ -88,77 +89,77 @@ public class SingleProduct extends AbstractPageStepDefination {
 //				 driver.navigate().refresh();
 //				 driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 				 Thread.sleep(3000);
-			     driver.findElement(By.xpath("//img[contains(@src,'cart.jpg')]")).click();
+			     driver.findElement(Constants.ATC_Icon).click();
 			     //
 			}
 			@And("User Click checkout")
 			public void User_Click_checkout() throws InterruptedException
 			{
-			driver.findElement(By.cssSelector(".proceede_btn > .btn")).click();	
+			driver.findElement(Constants.CHECKOUT).click();	
 			}
 			
 			@And("User signin with OTP")
 			public void User_signin_with_OTP() throws InterruptedException
 			{
 					
-					driver.findElement(By.cssSelector("#mobile")).sendKeys(excel.getData(0,13,1));
-					driver.findElement(By.cssSelector("#get_otp")).click();
+					driver.findElement(Constants.Mobile_Number).sendKeys(excel.getData(0,13,1));
+					driver.findElement(Constants.Send_OTP).click();
 					Thread.sleep(25000);
-					driver.findElement(By.cssSelector("#login_otp")).click();
+					driver.findElement(Constants.LOGIN_OTP).click();
 					Thread.sleep(3000);	
 			}
 			
 			@And("User Enter the Details")
 			public void User_Enter_the_Details() throws InterruptedException {
 				
-					driver.findElement(By.xpath("//div[contains(@id,'billing-buttons-container')][contains(.,'Continue')]")).click();
+					driver.findElement(Constants.Billing_Address_Continue).click();
 					Thread.sleep(3000);
-					driver.findElement(By.xpath("//div[@id='shipping-method-buttons-container']")).click();
+					driver.findElement(Constants.ShippingMethod).click();
 					Thread.sleep(3000);
 			     
-					WebElement ScrollRadio = driver.findElement(By.xpath("//label[contains(text(),'PayU Biz')]")); 
+					WebElement ScrollRadio = driver.findElement(Constants.PayUBizRadioButton); 
 					JavascriptExecutor js = (JavascriptExecutor) driver;
 					js.executeScript("arguments[0].scrollIntoView(true);",ScrollRadio);
 			  
 					System.out.println("radio Button will be select in next steps");
 					driver.manage().timeouts().implicitlyWait(13, TimeUnit.SECONDS);
-					WebElement PayURadio = driver.findElement(By.xpath("//label[contains(text(),'PayU Biz')]"));
+					WebElement PayURadio = driver.findElement(Constants.PayUBizRadioButton);
 					PayURadio.click();
 					
 					System.out.println("radio Button is selected correctly");
 			     	driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-			     	driver.findElement(By.xpath("//div[contains(@id,'payment-buttons-container')]/button[@type='button']")).click();
+			     	driver.findElement(Constants.PayMent_Information_Save).click();
 			
 			     	driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-			     	driver.findElement(By.xpath("//div[contains(@id,'review-buttons-container')]/button[@type='submit'] ")).click();
+			     	driver.findElement(Constants.CHECKOUT_LAST).click();
 			     	driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);		
 			}
 		
 			@And("User enter the payment details")
 			public void User_enter_the_payment_details()
 			{
-				 driver.findElement(By.xpath("//input[contains(@name,'ccard_number')]")).sendKeys("5123");
-			     driver.findElement(By.xpath("//input[contains(@name,'ccard_number')]")).sendKeys("4567");
-			     driver.findElement(By.xpath("//input[contains(@name,'ccard_number')]")).sendKeys("8901");
-			     driver.findElement(By.xpath("//input[contains(@name,'ccard_number')]")).sendKeys("2346");
+				 driver.findElement(Constants.CardNumber).sendKeys("5123");
+			     driver.findElement(Constants.CardNumber).sendKeys("4567");
+			     driver.findElement(Constants.CardNumber).sendKeys("8901");
+			     driver.findElement(Constants.CardNumber).sendKeys("2346");
 			     // CC name
-			     driver.findElement(By.xpath("//input[contains(@name,'cname_on_card')]")).sendKeys("Sagar Kumar");
+			     driver.findElement(Constants.CardName).sendKeys("Sagar Kumar");
 			     
-			     driver.findElement(By.xpath("//input[contains(@name,'ccvv_number')]")).sendKeys("123");
+			     driver.findElement(Constants.CVVNumber).sendKeys("123");
 			    
-			     WebElement MM = driver.findElement(By.xpath("//select[contains(@id,'cexpiry_date_month')]")); 
+			     WebElement MM = driver.findElement(Constants.CardMonth);
 			     Select dropdown = new Select(MM);
 			     dropdown.selectByValue("12");
 			     System.out.println(dropdown.getFirstSelectedOption().getText());
 			     
-			     WebElement YY = driver.findElement(By.xpath("//select[contains(@id,'cexpiry_date_year')]")); 
+			     WebElement YY = driver.findElement(Constants.CardYear); 
 			     Select dropdown1 = new Select(YY);
 			     dropdown1.selectByValue("2029");
 			     System.out.println(dropdown1.getFirstSelectedOption().getText());
 			     driver.findElement(By.xpath("//input[contains(@name,'pay_button')]")).click();
 			     driver.findElement(By.xpath("//input[contains(@id,'password')]")).sendKeys("123456");
 			     driver.findElement(By.xpath(" //input[contains(@id,'submitBtn')]")).click();
-			     System.out.println(driver.findElement(By.xpath("//div[contains(@class,'success_box')]")).getText());  
+			     System.out.println(driver.findElement(Constants.Booked).getText());  
 			}
 			
 		@Then("able to buy the product")
@@ -170,17 +171,17 @@ public class SingleProduct extends AbstractPageStepDefination {
 			
 		@When("click on the Subcategory of product")
 		public void click_on_the_Subcategory_of_product() throws InterruptedException {
-			WebElement btnmenu = driver.findElement(By.xpath(" //a[contains(text(),'Switches')]"));
+			WebElement btnmenu = driver.findElement(Constants.Switches);
 			Actions action = new Actions(driver);
 		    action.moveToElement(btnmenu).perform();
 		    Thread.sleep(3000);
-		    WebElement btnCat = driver.findElement(By.xpath("//a[contains(text(),'Accessories')]"));
+		    WebElement btnCat = driver.findElement(Constants.Accessories);
 		    btnCat.click();
-		    driver.findElement(By.xpath("//img[contains(@src,'0_287_3_7594.jpg')]")).click(); 
-		    driver.findElement(By.xpath("//body/section[2]/div[2]/div[1]/div[2]/form[1]/div[1]/div[1]/button[1]")).click();
-			driver.findElement(By.cssSelector("#zipcode")).clear();
-			driver.findElement(By.cssSelector("#zipcode")).sendKeys(excel.getData(0,2,1));
-		    driver.findElement(By.cssSelector("#addtocart_pincode > .btn")).click();
+		    driver.findElement(Constants.BidirectionalJumbo).click(); 
+		    driver.findElement(Constants.ADDToCART).click();
+			driver.findElement(Constants.POPUP_ZIPCODE).clear();
+			driver.findElement(Constants.POPUP_ZIPCODE).sendKeys(excel.getData(0,2,1));
+		    driver.findElement(Constants.ATC_POPUP).click();
 		    Thread.sleep(3000);
 		    
 		    Alert alert = driver.switchTo().alert(); 
@@ -192,15 +193,15 @@ public class SingleProduct extends AbstractPageStepDefination {
 			@When("Select the product from dropdown")
 			public void select_the_product_from_dropdown() throws InterruptedException
 			{
-				driver.findElement(By.xpath("//input[@id='search']")).sendKeys("aur");
+				driver.findElement(Constants.SearchBar).sendKeys("aur");
 				Thread.sleep(3000);
-				driver.findElement(By.xpath("//input[@id='search']")).sendKeys(Keys.ARROW_DOWN);
-				driver.findElement(By.xpath("//input[@id='search']")).sendKeys(Keys.ENTER);
-				driver.findElement(By.xpath("//img[contains(@alt,\"Aureus\")]")).click();
-				driver.findElement(By.xpath("//body/section[2]/div[2]/div[1]/div[2]/form[1]/div[1]/div[1]/button[1]")).click();
-				driver.findElement(By.cssSelector("#zipcode")).clear();
-				driver.findElement(By.cssSelector("#zipcode")).sendKeys(excel.getData(0,2,1));
-			    driver.findElement(By.cssSelector("#addtocart_pincode > .btn")).click();
+				driver.findElement(Constants.SearchBar).sendKeys(Keys.ARROW_DOWN);
+				driver.findElement(Constants.SearchBar).sendKeys(Keys.ENTER);
+				driver.findElement(Constants.Fan_Product).click();
+				driver.findElement(Constants.ADDToCART).click();
+				driver.findElement(Constants.POPUP_ZIPCODE).clear();
+				driver.findElement(Constants.POPUP_ZIPCODE).sendKeys(excel.getData(0,2,1));
+			    driver.findElement(Constants.ATC_POPUP).click();
 			    Thread.sleep(2000);
 			    Alert alert = driver.switchTo().alert(); 
 			     String alertMessage= alert.getText(); 
@@ -219,15 +220,26 @@ public class SingleProduct extends AbstractPageStepDefination {
 				driver.manage().timeouts().pageLoadTimeout(40,TimeUnit.SECONDS);
 				System.out.println("outside Browser is open");
 				driver.manage().window().maximize();
-				WebElement account = driver.findElement(By.xpath("//img[contains(@src,'account.jpg')]"));
+				WebElement account = driver.findElement(Constants.ATC_Icon);
 				Actions action = new Actions(driver);
 				action.moveToElement(account).perform();
-				WebElement Myacc = driver.findElement(By.xpath("//a[contains(text(),'Account')]"));
+				WebElement Myacc = driver.findElement(Constants.MyAccount);
 				Myacc.click();
 			}
 			
 			@And("Click on product name")
 			public void Click_on_product_name () 
 			{
-			driver.findElement(By.xpath("//a[contains(text(),'View Details')]")).click();
+			driver.findElement(Constants.ViewDetails).click();
+			
+			}
+			 @After("@browser")
+				public void tearDown(Scenario scenario) {
+				    if (scenario.isFailed()) {
+				    	
+				       final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+				       scenario.embed(screenshot, "image/png"); //stick it in the report
+				       System.out.println(scenario.getName());
+				    }
+				    driver.close(); 
 		}}
