@@ -23,7 +23,7 @@ public final class Constants {
 	public static final By PayMent_Information_Save = By.xpath("//div[contains(@id,'payment-buttons-container')]/button[@type='button']");
 	public static final By CHECKOUT_LAST = By.xpath("//div[contains(@id,'review-buttons-container')]/button[@type='submit'] ");
 	public static final By CardNumber = By.xpath("//input[contains(@name,'ccard_number')]");
-	public static final By CardName = By.xpath("//input[contains(@name,'ccvv_number')]");
+	public static final By CardName = By.xpath("//input[contains(@name,'cname_on_card')]");
 	public static final By CardMonth = By.xpath("//select[contains(@id,'cexpiry_date_month')]");
 	public static final By CardYear = By.xpath("//select[contains(@id,'cexpiry_date_year')]");
 	public static final By CVVNumber = By.xpath("//input[contains(@name,'ccvv_number')]");

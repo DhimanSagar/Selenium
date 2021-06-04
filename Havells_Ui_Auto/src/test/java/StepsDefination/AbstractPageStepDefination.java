@@ -18,9 +18,8 @@ public class AbstractPageStepDefination {
 			driver = new ChromeDriver(); 
 		}
 		return driver;
-	}
-	
 		}
+			}
 	
 
 
