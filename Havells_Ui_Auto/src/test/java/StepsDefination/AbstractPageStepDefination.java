@@ -3,13 +3,8 @@ package StepsDefination;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import cucumber.api.Scenario;
-
-
-
 public class AbstractPageStepDefination {
 	
-	Scenario scn;
 	private static WebDriver driver;
  
 	public static WebDriver getDriver() {

@@ -18,15 +18,15 @@
    <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
    
     <dependencies>
 
-			<dependency>
+						<dependency>
 			    <groupId>info.cukes</groupId>
 			    <artifactId>cucumber-java</artifactId>
-			    <version>1.2.5</version>
-			</dependency>
+			    <version>1.2.6</version>
+			          </dependency>
+
 			
 				<dependency>
 			    <groupId>info.cukes</groupId>
@@ -83,35 +83,28 @@
 				<artifactId>cucumber-extentsreport</artifactId>
 				<version>3.0.2</version>
 				</dependency>
-
-			 <dependency>
-			<groupId>com.aventstack</groupId>
-			<artifactId>extentreports</artifactId>
-			<version>5.0.4</version>
-			</dependency>
 			
 			    <dependency>
       		  <groupId>info.cukes</groupId>
       	 	 <artifactId>cucumber-core</artifactId>
       		  <version>1.2.5</version>
   			  </dependency>
-			 
-<dependency>
-    <groupId>com.aventstack</groupId>
-    <artifactId>extentreports</artifactId>
-    <version>3.1.1</version>
-</dependency>
+  			  
+  			   <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>4.0.9</version>
+        </dependency>
 
   </dependencies>
 
     <build>
-        <plugins>
-        <plugin>
-   <groupId>org.apache.maven.plugins</groupId>
+      <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-dependency-plugin</artifactId>
-    <version>3.0.0</version>
-</plugin>
-          </plugins> 
+    </plugin>
+  </plugins>
     </build>
 
 </project>

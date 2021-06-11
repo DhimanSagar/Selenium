@@ -2,14 +2,9 @@ package StepsDefination;
 
 import java.io.IOException;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-
 import Lib.Constants;
 import Lib.ExeclDataConfig;
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 
@@ -46,17 +41,6 @@ public class CouponGiftCard extends AbstractPageStepDefination {
 		{
 		   Thread.sleep(2000);
 		   driver.close();
-		   System.out.println("Browser is closed");
-		}
-		 @After("@browser")
-			public void tearDown(Scenario scenario) {
-			    if (scenario.isFailed()) {
-			    	
-			       final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-			       scenario.embed(screenshot, "image/png"); //stick it in the report
-			       System.out.println(scenario.getName());
-			    }
-			    driver.close();     
+		   System.out.println("Browser is closed");   
 }
 }
-

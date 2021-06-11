@@ -1,6 +1,7 @@
 Feature: User are buying more then 1 product
 
 @Regression
+@testing
 Scenario: User is able to buy same product with more then one quantity
 
 Given User is on home page
@@ -27,7 +28,7 @@ And Product is getting add to cart
 And User Click checkout
 #And User signin with OTP
 And User Enter the Details
-And User enter the payment details
+And User enter the payment details 
 Then able to buy the product
 #And Browser close
 

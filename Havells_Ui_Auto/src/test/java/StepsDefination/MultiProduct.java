@@ -7,8 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -68,16 +67,7 @@ public class MultiProduct extends AbstractPageStepDefination {
 		    String alertMessage= alert.getText(); 
 		    alert.accept();
 		    System.out.println("Alert msg is : "+alertMessage);    	
-	 } 
-	 @After("@browser")
-		public void tearDown(Scenario scenario) {
-		    if (scenario.isFailed()) {
-		    	
-		       final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-		       scenario.embed(screenshot, "image/png"); //stick it in the report
-		       System.out.println(scenario.getName());
-		    }
-		    driver.close(); 
+	  
 }
 }
   

@@ -3,16 +3,13 @@ package StepsDefination;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import Lib.Constants;
 import Lib.ExeclDataConfig;
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -114,16 +111,7 @@ public class AddNewAddress extends AbstractPageStepDefination {
 	    Thread.sleep(2000);
         driver.findElement(Constants.Billing_Address_Continue).click();
         Thread.sleep(3000);
-	}
-	 @After("@browser")
-		public void tearDown(Scenario scenario) {
-		    if (scenario.isFailed()) {
-		    	
-		       final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-		       scenario.embed(screenshot, "image/png"); //stick it in the report
-		       System.out.println(scenario.getName());
-		    }
-		    driver.close(); 
+	
 }
  
 }
